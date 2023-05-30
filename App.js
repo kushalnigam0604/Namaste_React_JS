@@ -1,3 +1,33 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// Babel does -->  JSX => React.createElement => Object => HTML(DOM)
+
+// React element -
+const heading = (
+  <h1 id='title' key='h2'>
+    Namaste React
+  </h1>
+);
+
+// React Component -
+const HeaderComponent = () => {
+  return (
+    <div>
+      <h2>React Component</h2>
+    </div>
+  )
+}
+   
+
+//passing a react element inside the root
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+
+// root.render(heading);
+root.render(<HeaderComponent/>);
+
+
 /***
  *
  * Created A Server
@@ -7,7 +37,7 @@
  * File Watcher algorithm - C++
  * BUNDLING
  * MINIFY
- * Cleaning our Code and removing console.log
+ * Cleaning our Code
  * Dev and Production Build
  * Super Fast build algorithm
  * Image Optimization
@@ -19,40 +49,7 @@
  * Consistent Hashing Algorithm
  * Zero Config
  * Transitive Dependencies - when some dependencies are dependent upon another dependencies.
+ * 
+ * 
+ * Babel - converts newer code to older code for browser compatibility.
  */
-
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-const heading = React.createElement(
-  "h1",
-  {
-    id: "title",
-  },
-  "Heading 1 kkk"
-);
-
-const heading2 = React.createElement(
-  "h2",
-  {
-    id: "title",
-  },
-  "Heading 2"
-);
-
-const container = React.createElement(
-  "div",
-  {
-    id: "container",
-  },
-  [heading, heading2]
-);
-
-console.log(heading);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-//passing a react element inside the root
-
-//async defer
-root.render(container);
