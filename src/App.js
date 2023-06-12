@@ -3,36 +3,48 @@ import ReactDOM from "react-dom/client";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-
-/**
-     Header
-        - Logo(Title)
-        - Nav Items(Right Side)
-        - Cart
-     Body 
-        - Search bar
-        - RestrauntList
-          - RestaurantCard (many cards)
-              - Image
-              - Name
-              - Rating
-              - Cusines
-     Footer
-      - links
-      - Copyright
-    */
-
+import About from "./components/About";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Error from "./components/Error";
+import Contact from "./components/Contact";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
   return (
     <>
       <Header />
-      <Body />
+      <Outlet/>
       <Footer />
     </>
   );
 };
 
+const appRouter = createBrowserRouter ([
+  {
+    path:'/',
+    element: <AppLayout/>,
+    errorElement: <Error/>,
+    children: [
+      {
+        path:'/',
+        element:<Body/>
+      },
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'/contact',
+        element:<Contact/>
+      },
+      {
+        path:'/restaurant/:id',
+        element:<RestaurantMenu/>
+      }
+    ]
+  }
+])
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter}/>);

@@ -1,4 +1,5 @@
 import React , {useState , useEffect} from "react";
+import { Link } from "react-router-dom";
 import { restrauntList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
@@ -35,7 +36,7 @@ const Body = () => {
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
-  if(filteredRestaurants?.length === 0) return <h1>Restaurant Not Found.</h1>
+  // if(filteredRestaurants?.length === 0) return <h1>Restaurant Not Found.</h1>
 
   return (allRestaurants?.length === 0) ? <Shimmer/> : (
     <>
@@ -51,7 +52,7 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurants?.map((val) => {
           return (
-            <RestaurantCard {...val.data} key={val.data.id} />
+            <Link to={"/restaurant/" + val.data.id}><RestaurantCard {...val.data} key={val.data.id} /></Link>
           );
         })}
       </div>
