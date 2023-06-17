@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/foodvilla.png";
+import useOnline from "../utils/useOnline";
 
 const loggedInUser = () => {
   //  API call to check authentication
@@ -16,6 +17,8 @@ const Title = () => (
 // Composing Comopnents
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isOnline = useOnline();
+
   return (
     <div className="header">
       <Title />
@@ -31,8 +34,10 @@ const Header = () => {
           <Link to="/contact">Contact</Link>
           </li>
           <li>Cart</li>
+          <li><Link to="/Instamart">Instamart</Link></li>
         </ul>
       </div>
+      <h1>{isOnline ? "✅" : "🔴"}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (

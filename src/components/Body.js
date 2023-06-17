@@ -1,18 +1,13 @@
 import React , {useState , useEffect} from "react";
 import { Link } from "react-router-dom";
-import { restrauntList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { filterData } from "../utils/helper"; 
+import useOnline from "../utils/useOnline";
 
 //Config Driven UI
 
 // no key (not acceptable)<<<<<<<<<<< index key(last option) <<<<< unquie key (best practice)
-function filterData(searchText, allRestaurants){
-  const data = allRestaurants.filter((val) => 
-  val?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-  );
-  return data;
-}
 
 const Body = () => {
 
@@ -35,6 +30,11 @@ const Body = () => {
         setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
+
+  const isOnline = useOnline();
+   if(!isOnline){
+     return <h2>Please check your internet connection.</h2>
+   }
 
   // if(filteredRestaurants?.length === 0) return <h1>Restaurant Not Found.</h1>
 
