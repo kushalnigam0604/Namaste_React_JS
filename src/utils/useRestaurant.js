@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FETCH_MENU_URL } from "../config";
 
 const useRestaurant = (resId) => {
@@ -9,7 +9,9 @@ const useRestaurant = (resId) => {
   }, []);
 
   async function getRestaurantInfo() {
-    const data = await fetch( FETCH_MENU_URL + params.id + "&submitAction=ENTER");
+    const data = await fetch(
+      FETCH_MENU_URL + resId + "&submitAction=ENTER"
+    );
     const json = await data.json();
     console.log(json.data);
     setRestauraunt(json.data);
